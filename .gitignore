@@ -1,0 +1,22 @@
+# Build
+build
+dist
+
+# Dependency directories
+node_modules/
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Env
+.env
+.env.test
