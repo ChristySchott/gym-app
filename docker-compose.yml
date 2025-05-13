@@ -1,0 +1,10 @@
+services:
+  gym-checkin:
+    image: bitnami/postgresql
+    container_name: gym-checkin
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=gymcheckin

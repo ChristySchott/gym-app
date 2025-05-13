@@ -9,7 +9,7 @@ export default defineConfig([
   { files: ['**/*.{js,mjs,cjs,ts}'], languageOptions: { globals: globals.node } },
   tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
-  globalIgnores(['build']),
+  globalIgnores(['build', 'generated']),
   {
     rules: {
       'no-console': 'warn',
