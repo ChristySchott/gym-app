@@ -1,7 +1,7 @@
 import { hash } from 'bcryptjs'
 
 import { UsersRepository } from '@/repositories/users.repository.js'
-import { UserAlreadyExistsError } from '@/services/errors/user-already-exists.error.js'
+import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists.error.js'
 
 interface RegisterParams {
   name: string
@@ -9,7 +9,7 @@ interface RegisterParams {
   password: string
 }
 
-export class RegisterService {
+export class RegisterUseCase {
   private usersRepository: UsersRepository
 
   constructor(usersRepository: UsersRepository) {
