@@ -9,13 +9,13 @@ import { CheckInUseCase } from './check-in.js'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
-let checkInUseCase: CheckInUseCase
+let sut: CheckInUseCase
 
 describe('Check In Use Case', () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
-    checkInUseCase = new CheckInUseCase(checkInsRepository, gymsRepository)
+    sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
     await gymsRepository.create({
       id: 'gym-01',
@@ -34,7 +34,7 @@ describe('Check In Use Case', () => {
   })
 
   it('should be able to check in', async () => {
-    const { checkIn } = await checkInUseCase.execute({
+    const { checkIn } = await sut.execute({
       userId: 'user-01',
       gymId: 'gym-01',
       userLatitude: 9.5770097,
@@ -47,7 +47,7 @@ describe('Check In Use Case', () => {
   it('should not be able to check in twice in the same day', async () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
-    await checkInUseCase.execute({
+    await sut.execute({
       userId: 'user-01',
       gymId: 'gym-01',
       userLatitude: 9.5770097,
@@ -55,7 +55,7 @@ describe('Check In Use Case', () => {
     })
 
     await expect(() =>
-      checkInUseCase.execute({
+      sut.execute({
         userId: 'user-01',
         gymId: 'gym-01',
         userLatitude: 9.5770097,
@@ -67,7 +67,7 @@ describe('Check In Use Case', () => {
   it('should be able to check in twice but in different days', async () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
-    await checkInUseCase.execute({
+    await sut.execute({
       userId: 'user-01',
       gymId: 'gym-01',
       userLatitude: 9.5770097,
@@ -76,7 +76,7 @@ describe('Check In Use Case', () => {
 
     vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
 
-    const { checkIn } = await checkInUseCase.execute({
+    const { checkIn } = await sut.execute({
       userId: 'user-01',
       gymId: 'gym-01',
       userLatitude: 9.5770097,
@@ -97,7 +97,7 @@ describe('Check In Use Case', () => {
     })
 
     await expect(() =>
-      checkInUseCase.execute({
+      sut.execute({
         userId: 'user-01',
         gymId: 'gym-02',
         userLatitude: 9.5770097,

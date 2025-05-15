@@ -5,16 +5,16 @@ import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms.
 import { CreateGymUseCase } from './create-gym.js'
 
 let gymsRepository: InMemoryGymsRepository
-let createGymUseCase: CreateGymUseCase
+let sut: CreateGymUseCase
 
 describe('CreateGym Use Case', () => {
   beforeEach(() => {
     gymsRepository = new InMemoryGymsRepository()
-    createGymUseCase = new CreateGymUseCase(gymsRepository)
+    sut = new CreateGymUseCase(gymsRepository)
   })
 
   it('should be able to create a gym', async () => {
-    const { gym } = await createGymUseCase.execute({
+    const { gym } = await sut.execute({
       title: 'My Gym',
       description: 'Gym used for tests',
       phone: null,
