@@ -21,7 +21,7 @@ describe('Validate Check In Use Case', () => {
     vi.useRealTimers()
   })
 
-  it('should be able to validate check in', async () => {
+  it('should be able to validate check-in', async () => {
     const createdCheckIn = await checkInsRepository.create({
       user_id: 'user-01',
       gym_id: 'gym-01',
@@ -32,7 +32,7 @@ describe('Validate Check In Use Case', () => {
     expect(checkIn.validated_at).toEqual(expect.any(Date))
   })
 
-  it('should not be able to validate a check in that does not exists', async () => {
+  it('should not be able to validate a check-in that does not exists', async () => {
     await expect(() =>
       sut.execute({
         checkInId: 'non-existing-id',
@@ -40,7 +40,7 @@ describe('Validate Check In Use Case', () => {
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 
-  it('should not be able to validate a check in after 20 minutes of its creation', async () => {
+  it('should not be able to validate a check-in after 20 minutes of its creation', async () => {
     vi.setSystemTime(new Date(2025, 0, 1, 13, 40))
 
     const createdCheckIn = await checkInsRepository.create({
