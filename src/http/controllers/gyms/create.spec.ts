@@ -14,7 +14,7 @@ describe('Create Gym (e2e)', () => {
     await app.close()
   })
 
-  it('should be able create a gym', async () => {
+  it('should be able to create a gym', async () => {
     const { token } = await createAndAuthenticateUser(app)
 
     const response = await supertest(app.server)
