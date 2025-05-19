@@ -84,11 +84,12 @@ A RESTful API for managing gym check-ins built with **Node.js**, **Fastify**, **
 
 ## 🚀 Getting Started
 
-1. **Clone the repo**
+1. **Clone the repo and install dependencies**
 
 ```bash
 git clone <repository-url>
 cd gym-checkin
+npm install
 ```
 
 2. **Environment Variables**

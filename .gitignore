@@ -26,3 +26,6 @@ generated
 
 # Tests
 coverage
+
+# Package-lock
+package-lock.json
