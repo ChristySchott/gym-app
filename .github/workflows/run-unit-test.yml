@@ -19,7 +19,8 @@ jobs:
       
       - name: Install dependencies
         uses: bahmutov/npm-install@v1.4.5
-        run: npm t
+      
+      - run: npm t
 
       - name: Run unit tests
         run: npm run test
